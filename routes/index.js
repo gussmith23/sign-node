@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var exec = require('child_process').exec;
+var spawn = require('child_process').spawn;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,7 +12,8 @@ router.get('/sign', function(req, res) {
 });
 
 router.post('/sign', function(req, res) {
-  exec("perl /home/gus/ledsign/ledsign.perl '" + req.body.message + "'");
+  perl = spawn("/usr/bin/perl", [scriptsPath + "/ledsign.perl", req.body.message]);
+  perl.stderr.on('data', function(data) { console.error("" + data); });
   res.redirect("/sign");
 });
 
