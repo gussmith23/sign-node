@@ -1,0 +1,3 @@
+form(action="soundboard", method="post")
+  - each sound in sounds
+    button(type="submit", name="file", value="#{sound}") #{sound}

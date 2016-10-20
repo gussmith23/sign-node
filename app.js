@@ -5,13 +5,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// points to scripts
+global.scriptsPath = __dirname + "/scripts";
+
+// points to sounds directory for soundboard
+global.soundsPath = __dirname + "/public/sounds/";
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-
-// points to scripts
-global.scriptsPath = __dirname + "/scripts";
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
